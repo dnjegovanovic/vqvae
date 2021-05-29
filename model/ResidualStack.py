@@ -1,4 +1,4 @@
-from model import Residual
+from model.Residual import ResidualLayer
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -7,7 +7,7 @@ class ResidualStack(nn.Module):
     def __init__(self, inChannels, numHiddens, numResidualLayers, numResidualHiddens):
         super(ResidualStack, self).__init__()
         self._numResiduaLayers = numResidualLayers
-        self._layers = nn.ModuleList([Residual(inChannels, numHiddens, numResidualHiddens)
+        self._layers = nn.ModuleList([ResidualLayer(inChannels, numHiddens, numResidualHiddens)
                                       for _ in range(self._numResiduaLayers)])
 
     def forward(self, x):

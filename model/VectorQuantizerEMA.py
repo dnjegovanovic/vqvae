@@ -6,13 +6,13 @@ import torch.nn.functional as F
 class VectorQuantizerLayerEMA(nn.Module):
 
     def __init__(self, numEmbeddings, embeddingDim, commitmentCost, decay, epsilon=1e-5):
-        super(VectorQuantizerLayerEMA, set).__init__()
+        super(VectorQuantizerLayerEMA, self).__init__()
 
         self._embeddingDim = embeddingDim
         self._numEmbeddings = numEmbeddings
         self._commitmentCost = commitmentCost
 
-        self._embedding = nn.Embedding(self._num_embeddings, self._embedding_dim)
+        self._embedding = nn.Embedding(self._numEmbeddings, self._embeddingDim)
         self._embedding.weight.data.normal_()
 
         self.register_buffer('_emaClusterSize', torch.zeros(numEmbeddings))

@@ -15,15 +15,15 @@ class Model(nn.Module):
                                 numResidualLayers,
                                 numResidualHiddens)
         self._preVqConv = nn.Conv2d(in_channels=numHiddens,
-                                      out_channels=embeddingDim,
-                                      kernel_size=1,
-                                      stride=1)
+                                    out_channels=embeddingDim,
+                                    kernel_size=1,
+                                    stride=1)
         if decay > 0.0:
             self._vqVae = VectorQuantizerLayerEMA(numEmbeddings, embeddingDim,
-                                                   commitmentCost, decay)
+                                                  commitmentCost, decay)
         else:
             self._vqVae = VectorQuantizerLayer(numEmbeddings, embeddingDim,
-                                                commitmentCost)
+                                               commitmentCost)
         self._decoder = Decoder(embeddingDim,
                                 numHiddens,
                                 numResidualLayers,
