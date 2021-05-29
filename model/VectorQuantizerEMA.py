@@ -44,6 +44,10 @@ class VectorQuantizerLayerEMA(nn.Module):
         quantized = torch.matmul(encodings, self._embedding.weight).view(inputShape)
 
         # Use EMA to update the embedding vectors
+        """
+        The laplace smoothing makes sure that no element of _emaClusterSize will ever be exactly zero. 
+        If that ever happened, it would result in division with zero, when updating _emaW.
+        """
         if self.training:
             self._emaClusterSize = self._emaClusterSize * self._decay + \
                                    (1 - self._decay) * torch.sum(encodings, 0)
