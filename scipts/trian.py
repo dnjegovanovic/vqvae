@@ -54,7 +54,7 @@ def train_vqvae():
     print(dataVariance)
 
     batchSize = 256
-    numTrainingUpdates = 1000  # 15000
+    numTrainingUpdates = 15000
 
     numHiddens = 128
     numResidualHiddens = 32
