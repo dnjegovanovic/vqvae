@@ -144,6 +144,7 @@ def train_vqvae():
     show(make_grid(validReconstructions.cpu().data) + 0.5, "validRec")
     show(make_grid(validOriginals.cpu() + 0.5), "validOrg")
 
+    f2 = plt.figure(figsize=(16, 8))
     proj = umap.UMAP(n_neighbors=3,
                      min_dist=0.1,
                      metric='cosine').fit_transform(model._vqVae._embedding.weight.data.cpu())
