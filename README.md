@@ -53,3 +53,11 @@ As an example for a `BCHW` tensor of shape `[16, 64, 32, 32]`, we will first con
 
 **Embedding data**
 ![](./imgs/embedding.png)
+
+### Code
+
+TensorFlow implementation [vqvae.py](https://github.com/deepmind/sonnet/blob/master/sonnet/python/modules/nets/vqvae.py) and [vqvae_example.ipynb](https://github.com/deepmind/sonnet/blob/master/sonnet/examples/vqvae_example.ipynb).
+ 
+PyTorch implementation is found at [pytorch-vqvae](https://github.com/ritheshkumar95/pytorch-vqvae).
+
+Paper [paper](https://paperswithcode.com/paper/190600446)
