@@ -27,7 +27,7 @@ def show(img, name):
     fig = plt.imshow(np.transpose(npimg, (1, 2, 0)), interpolation='nearest')
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
-    plt.savefig('{}.png'.format(name))
+    plt.savefig('./imgs/{}.png'.format(name))
 
 
 def load_data():
@@ -126,7 +126,7 @@ def train_vqvae():
     ax.set_title('Smoothed Average codebook usage (perplexity).')
     ax.set_xlabel('iteration')
 
-    plt.savefig('train_graph.png')
+    plt.savefig('./imgs/train_graph.png')
 
     model.eval()
 
@@ -150,4 +150,4 @@ def train_vqvae():
                      metric='cosine').fit_transform(model._vqVae._embedding.weight.data.cpu())
 
     plt.scatter(proj[:, 0], proj[:, 1], alpha=0.3)
-    plt.savefig('embedding.png')
+    plt.savefig('./imgs/embedding.png')
