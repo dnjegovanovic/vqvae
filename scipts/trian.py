@@ -111,6 +111,8 @@ def train_vqvae():
             print('perplexity: %.3f' % np.mean(trainResPerplexity[-100:]))
             print()
 
+    torch.save(model.state_dict(), 'vqvae_model_weights.pth')
+
     trainResReconErrorSmooth = savgol_filter(trainResReconError, 201, 7)
     trainResPerplexitySmooth = savgol_filter(trainResPerplexity, 201, 7)
 
