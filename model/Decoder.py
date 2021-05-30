@@ -1,3 +1,5 @@
+import numpy as np
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -37,3 +39,14 @@ class Decoder(nn.Module):
         x = F.relu(x)
 
         return self._convTrans2(x)
+
+
+if __name__ == "__main__":
+    # random data
+    x = np.random.random_sample((3, 40, 40, 200))
+    x = torch.tensor(x).float()
+
+    # test decoder
+    decoder = Decoder(40, 128, 3, 64)
+    decoder_out = decoder(x)
+    print('Dncoder out shape:', decoder_out.shape)

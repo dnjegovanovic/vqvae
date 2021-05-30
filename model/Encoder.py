@@ -1,3 +1,5 @@
+import numpy as np
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -34,3 +36,14 @@ class Encoder(nn.Module):
 
         x = self._conv3(x)
         return self._residualStack(x)
+
+
+if __name__ == "__main__":
+    # random data
+    x = np.random.random_sample((3, 40, 40, 200))
+    x = torch.tensor(x).float()
+
+    # test encoder
+    encoder = Encoder(40, 128, 3, 64)
+    encoder_out = encoder(x)
+    print('Encoder out shape:', encoder_out.shape)

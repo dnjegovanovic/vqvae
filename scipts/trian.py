@@ -111,7 +111,7 @@ def train_vqvae():
             print('perplexity: %.3f' % np.mean(trainResPerplexity[-100:]))
             print()
 
-    torch.save(model.state_dict(), 'vqvae_model_weights.pth')
+    torch.save(model.state_dict(), 'vqvae_model_weights2.pth')
 
     trainResReconErrorSmooth = savgol_filter(trainResReconError, 201, 7)
     trainResPerplexitySmooth = savgol_filter(trainResPerplexity, 201, 7)
@@ -128,7 +128,7 @@ def train_vqvae():
     ax.set_title('Smoothed Average codebook usage (perplexity).')
     ax.set_xlabel('iteration')
 
-    plt.savefig('./imgs/train_graph.png')
+    plt.savefig('./imgs/train_graph2.png')
 
     model.eval()
 
@@ -143,8 +143,8 @@ def train_vqvae():
     trainOriginals = trainOriginals.to(device)
     _, trainReconstructions, _, _ = model._vqVae(trainOriginals)
 
-    show(make_grid(validReconstructions.cpu().data) + 0.5, "validRec")
-    show(make_grid(validOriginals.cpu() + 0.5), "validOrg")
+    show(make_grid(validReconstructions.cpu().data) + 0.5, "validRec2")
+    show(make_grid(validOriginals.cpu() + 0.5), "validOrg2")
 
     f2 = plt.figure(figsize=(16, 8))
     proj = umap.UMAP(n_neighbors=3,
@@ -152,4 +152,4 @@ def train_vqvae():
                      metric='cosine').fit_transform(model._vqVae._embedding.weight.data.cpu())
 
     plt.scatter(proj[:, 0], proj[:, 1], alpha=0.3)
-    plt.savefig('./imgs/embedding.png')
+    plt.savefig('./imgs/embedding2.png')
