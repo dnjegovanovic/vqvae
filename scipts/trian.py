@@ -16,19 +16,10 @@ from torchvision.utils import make_grid
 import torch.nn.functional as F
 
 from model.Model import Model
+from utils.utils import show
 
 if torch.cuda.is_available():
     print(True)
-
-
-def show(img, name):
-    npimg = img.numpy()
-    f = plt.figure(figsize=(16, 8))
-    fig = plt.imshow(np.transpose(npimg, (1, 2, 0)), interpolation='nearest')
-    fig.axes.get_xaxis().set_visible(False)
-    fig.axes.get_yaxis().set_visible(False)
-    plt.savefig('./imgs/{}.png'.format(name))
-
 
 def load_data():
     training_data = datasets.CIFAR10(root="data", train=True, download=True,
